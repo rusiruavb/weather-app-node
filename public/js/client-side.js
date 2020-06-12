@@ -61,9 +61,7 @@ weather_form.addEventListener("submit", (event) => {
   description.textContent = "";
   //windDir.textContent = "";
 
-  fetch(
-    "http://localhost:3032/weather?address=" + encodeURIComponent(location)
-  ).then((response) => {
+  fetch("/weather?address=" + encodeURIComponent(location)).then((response) => {
     response.json().then((data) => {
       if (data.error) {
         messageOne.textContent = data.error;
