@@ -1,4 +1,5 @@
 //const { response } = require("express");
+//const urlToImg = require("url-to-image");
 
 console.log("Client side javascript is loaded");
 
@@ -7,13 +8,18 @@ console.log("Client side javascript is loaded");
 // servlet controller
 const weather_form = document.querySelector("form");
 const search = document.querySelector("input");
-const messageOne = document.querySelector("#message-1");
-const messageTwo = document.querySelector("#message-2");
-const messageThree = document.querySelector("#message-3");
-const messageFour = document.querySelector("#message-4");
-const messageFive = document.querySelector("#message-5");
-const messageSix = document.querySelector("#message-6");
-const messageSeven = document.querySelector("#message-7");
+
+const country = document.querySelector("#country");
+const city = document.querySelector("#city");
+const time = document.querySelector("#time");
+const tempurature = document.querySelector("#temp");
+const windspeed = document.querySelector("#windspeed");
+const latitude = document.querySelector("#latitude");
+const longitude = document.querySelector("#longitude");
+const humidity = document.querySelector("#humidity");
+const windDir = document.querySelector("#windDir");
+const description = document.querySelector("#description");
+
 const name_1 = document.querySelector("#name-1");
 const name_2 = document.querySelector("#name-2");
 const name_3 = document.querySelector("#name-3");
@@ -21,6 +27,10 @@ const name_4 = document.querySelector("#name-4");
 const name_5 = document.querySelector("#name-5");
 const name_6 = document.querySelector("#name-6");
 const name_7 = document.querySelector("#name-7");
+const name_8 = document.querySelector("#name-8");
+const name_9 = document.querySelector("#name-9");
+const name_10 = document.querySelector("#name-10");
+
 const table_class = document.querySelector(".table-class");
 const heading = document.querySelector("#heading");
 
@@ -36,17 +46,23 @@ weather_form.addEventListener("submit", (event) => {
   name_5.textContent = "";
   name_6.textContent = "";
   name_7.textContent = "";
+  name_8.textContent = "";
+  name_9.textContent = "";
+  name_10.textContent = "";
 
-  messageOne.textContent = "";
-  messageTwo.textContent = "";
-  messageThree.textContent = "";
-  messageFour.textContent = "";
-  messageFive.textContent = "";
-  messageSix.textContent = "";
-  messageSeven.textContent = "";
+  country.textContent = "";
+  city.textContent = "";
+  time.textContent = "";
+  tempurature.textContent = "";
+  windspeed.textContent = "";
+  latitude.textContent = "";
+  longitude.textContent = "";
+  humidity.textContent = "";
+  description.textContent = "";
+  //windDir.textContent = "";
 
   fetch(
-    "/weather?address=" + encodeURIComponent(location)
+    "http://localhost:3032/weather?address=" + encodeURIComponent(location)
   ).then((response) => {
     response.json().then((data) => {
       if (data.error) {
@@ -63,14 +79,20 @@ weather_form.addEventListener("submit", (event) => {
         name_5.textContent = "Wind Speed";
         name_6.textContent = "Latitude";
         name_7.textContent = "Longitude";
+        name_8.textContent = "Humidity";
+        name_9.textContent = "Wind Direction";
+        name_10.textContent = "Weather Description";
 
-        messageOne.textContent = data.data.country;
-        messageTwo.textContent = data.data.city;
-        messageThree.textContent = data.data.time;
-        messageFour.textContent = data.data.tempurature;
-        messageFive.textContent = data.data.windSpeed;
-        messageSix.textContent = data.forecastData.latitude;
-        messageSeven.textContent = data.forecastData.longitude;
+        country.textContent = data.data.country;
+        city.textContent = data.data.city;
+        time.textContent = data.data.time;
+        tempurature.textContent = data.data.tempurature;
+        windspeed.textContent = data.data.windSpeed;
+        latitude.textContent = data.forecastData.latitude;
+        longitude.textContent = data.forecastData.longitude;
+        humidity.textContent = data.data.humidity;
+        windDir.textContent = data.data.windDir;
+        description.textContent = data.data.description;
       }
     });
   });

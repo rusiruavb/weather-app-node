@@ -1,4 +1,6 @@
 const request = require("request");
+const urlToImg = require("url-to-image");
+const https = require("https");
 
 const geoLocationData = (address, callback) => {
   const url =
@@ -20,8 +22,11 @@ const geoLocationData = (address, callback) => {
         city: response.body.location.name,
         country: response.body.location.country,
         windSpeed: response.body.current.wind_speed + " km/h",
+        windDir: response.body.current.wind_dir,
         tempurature: response.body.current.temperature + " Celsius",
         time: response.body.location.localtime,
+        description: response.body.current.weather_descriptions[0],
+        humidity: response.body.current.humidity + " %",
       });
     }
   });
