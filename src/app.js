@@ -9,6 +9,7 @@ const publicDirectory = path.join(__dirname, "../public");
 const viewPath = path.join(__dirname, "../template/views");
 const partialPath = path.join(__dirname, "../template/partials");
 const app = express();
+const port = process.env.PORT || 3032;
 
 // setup handlebars enginea and view location
 app.set("view engine", "hbs");
@@ -82,6 +83,6 @@ app.get("*", (req, res) => {
   });
 });
 
-app.listen(3032, () => {
-  console.log("Server is up and running port 3032");
+app.listen(port, () => {
+  console.log("Server is up and running port " + port);
 });
